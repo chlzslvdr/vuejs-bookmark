@@ -1,4 +1,7 @@
 :root {
+  --black: black;
+  --white: white;
+
   --primary-soft-blue: hsl(231, 69%, 60%);
   --primary-soft-red: hsl(0, 94%, 66%);
 
@@ -17,15 +20,11 @@
 }
 
 body {
-  min-height: 100vh;
-  color: black;
-  background: white;
-  transition:
-    color 0.5s,
-    background-color 0.5s;
+  color: var(--black);
+  background: var(--white);
   line-height: 1.6;
   font-family: 'Rubik', sans-serif;
-  font-size: 15px;
+  font-size: var(--default-font-size);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
