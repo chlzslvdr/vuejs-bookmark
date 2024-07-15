@@ -2,7 +2,7 @@
 
 This is a solution to the [Bookmark landing page challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/bookmark-landing-page-5d0b588a9edda32581d29158).
 
-![](./desktop-preview.jpg)
+![](https://chlzslvdr.sirv.com/vuejs-bookmark/design/desktop-design.jpg)
 
 ### Built with:
 
@@ -38,7 +38,7 @@ npm run build
 npm run lint
 ```
 
-Open with your browser to see the result.
+Open with [http://localhost:4010](http://localhost:4010) your browser to see the result.
 
 ### Links
 
