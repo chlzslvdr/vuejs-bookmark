@@ -23,23 +23,25 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '@scss/mixins';
+
 .header-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 250px;
+  padding: 2rem;
   background-color: var(--white);
 }
 
 .logo-container img {
-  height: 30px;
+  height: 3rem;
 }
 
 .header-menu ul {
   list-style: none;
   display: flex;
-  gap: 60px;
+  gap: 2rem;
   padding: 0;
   margin: 0;
   text-transform: uppercase;
@@ -53,7 +55,7 @@ export default {
 .header-menu ul li a {
   text-decoration: none;
   color: var(--neutral-dark-blue);
-  font-size: 16px;
+  font-size: 1.4rem;
 }
 
 .header-menu ul li a:hover {
@@ -64,7 +66,7 @@ export default {
   background-color: var(--primary-soft-red);
   color: var(--white);
   border: none;
-  padding: 10px 32px;
+  padding: 8px 2.4rem;
   border-radius: 4px;
   cursor: pointer;
   font-weight: 600;
@@ -75,5 +77,41 @@ export default {
   background-color: var(--white);
   color: var(--primary-soft-red);
   border: 2px solid var(--primary-soft-red);
+}
+
+@include respond(tab-port) {
+  .header-section {
+    padding: 3rem 10rem;
+  }
+
+  .header-menu ul {
+    gap: 4rem;
+  }
+
+  .header-menu ul li a {
+    font-size: 1.6rem;
+  }
+
+  .login-button {
+    padding: 1rem 3.2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header-section {
+    padding: 1rem 15rem;
+  }
+
+  .header-menu ul {
+    gap: 6rem;
+  }
+
+  .header-menu ul li a {
+    font-size: 1.6rem;
+  }
+
+  .login-button {
+    padding: 1rem 3.2rem;
+  }
 }
 </style>
