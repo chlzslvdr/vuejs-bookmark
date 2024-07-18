@@ -9,6 +9,7 @@ This is a solution to the [Bookmark landing page challenge on Frontend Mentor](h
 ### Built with:
 
 - [VueJS](https://vuejs.org)
+- [Sass](https://sass-lang.com)
 
 ## Customize configuration
 

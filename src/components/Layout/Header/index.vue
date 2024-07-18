@@ -7,7 +7,13 @@
       />
     </div>
     <nav class="header-menu">
-      <ul>
+      <img
+        class="mobile-menu-toggle"
+        src="https://chlzslvdr.sirv.com/vuejs-bookmark/images/icon-hamburger.svg"
+        alt="menu"
+        @click="toggleMenu"
+      />
+      <ul :class="{ open: isMenuOpen }">
         <li><a href="#">Features</a></li>
         <li><a href="#">Pricing</a></li>
         <li><a href="#">Contact</a></li>
@@ -19,18 +25,26 @@
 
 <script>
 export default {
-  name: 'Header'
+  name: 'Header',
+  data() {
+    return {
+      isMenuOpen: false
+    }
+  },
+  methods: {
+    toggleMenu() {
+      this.isMenuOpen = !this.isMenuOpen
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '@scss/mixins';
-
 .header-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem;
+  padding: 2rem 10rem;
   background-color: var(--white);
 }
 
@@ -38,18 +52,36 @@ export default {
   height: 3rem;
 }
 
+.header-menu {
+  position: relative;
+}
+
+.mobile-menu-toggle {
+  cursor: pointer;
+  display: none;
+}
+
 .header-menu ul {
-  list-style: none;
   display: flex;
-  gap: 2rem;
+  list-style: none;
   padding: 0;
   margin: 0;
   text-transform: uppercase;
-  align-items: center;
+  gap: 2rem;
+}
+
+.header-menu ul.open {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--white);
+  width: 100%;
+  text-align: center;
 }
 
 .header-menu ul li {
-  margin: 0;
+  margin: 1rem;
 }
 
 .header-menu ul li a {
@@ -63,6 +95,7 @@ export default {
 }
 
 .login-button {
+  box-sizing: border-box;
   background-color: var(--primary-soft-red);
   color: var(--white);
   border: none;
@@ -79,39 +112,22 @@ export default {
   border: 2px solid var(--primary-soft-red);
 }
 
-@include respond(tab-port) {
+@media (max-width: 768px) {
   .header-section {
-    padding: 3rem 10rem;
+    padding: 3rem 5rem;
+  }
+
+  .mobile-menu-toggle {
+    display: block;
   }
 
   .header-menu ul {
-    gap: 4rem;
+    display: none;
+    flex-direction: column;
   }
 
-  .header-menu ul li a {
-    font-size: 1.6rem;
-  }
-
-  .login-button {
-    padding: 1rem 3.2rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .header-section {
-    padding: 1rem 15rem;
-  }
-
-  .header-menu ul {
-    gap: 6rem;
-  }
-
-  .header-menu ul li a {
-    font-size: 1.6rem;
-  }
-
-  .login-button {
-    padding: 1rem 3.2rem;
+  .header-menu ul.open {
+    display: block;
   }
 }
 </style>
