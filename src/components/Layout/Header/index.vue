@@ -9,17 +9,58 @@
     <nav class="header-menu">
       <img
         class="mobile-menu-toggle"
-        src="https://chlzslvdr.sirv.com/vuejs-bookmark/images/icon-hamburger.svg"
+        :src="
+          isMenuOpen ? '' : 'https://chlzslvdr.sirv.com/vuejs-bookmark/images/icon-hamburger.svg'
+        "
         alt="menu"
         @click="toggleMenu"
+        v-if="!isMenuOpen"
       />
-      <ul :class="{ open: isMenuOpen }">
+      <ul>
         <li><a href="#">Features</a></li>
         <li><a href="#">Pricing</a></li>
         <li><a href="#">Contact</a></li>
         <li><button class="login-button">Login</button></li>
       </ul>
     </nav>
+    <div :class="{ overlay: isMenuOpen }" class="menu-overlay">
+      <div class="overlay-header">
+        <div class="logo-container">
+          <img
+            src="https://chlzslvdr.sirv.com/vuejs-bookmark/images/logo-bookmark-white.svg"
+            alt="VueJS Bookmark"
+          />
+        </div>
+        <img
+          class="mobile-menu-toggle"
+          src="https://chlzslvdr.sirv.com/vuejs-bookmark/images/icon-close.svg"
+          alt="close menu"
+          @click="toggleMenu"
+        />
+      </div>
+      <div class="overlay-content">
+        <ul @click="toggleMenu">
+          <li><a href="#">Features</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><button class="login-button">Login</button></li>
+        </ul>
+        <div class="social-icons">
+          <a href="#">
+            <img
+              src="https://chlzslvdr.sirv.com/vuejs-bookmark/images/icon-facebook.svg"
+              alt="Facebook"
+            />
+          </a>
+          <a href="#">
+            <img
+              src="https://chlzslvdr.sirv.com/vuejs-bookmark/images/icon-twitter.svg"
+              alt="Twitter"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
   </header>
 </template>
 
@@ -34,6 +75,7 @@ export default {
   methods: {
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen
+      this.$emit('update:showFooter', !this.isMenuOpen)
     }
   }
 }
@@ -54,11 +96,13 @@ export default {
 
 .header-menu {
   position: relative;
+  z-index: 11;
 }
 
 .mobile-menu-toggle {
   cursor: pointer;
   display: none;
+  z-index: 12;
 }
 
 .header-menu ul {
@@ -68,16 +112,6 @@ export default {
   margin: 0;
   text-transform: uppercase;
   gap: 2rem;
-}
-
-.header-menu ul.open {
-  display: block;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: var(--white);
-  width: 100%;
-  text-align: center;
 }
 
 .header-menu ul li {
@@ -112,6 +146,79 @@ export default {
   border: 2px solid var(--primary-soft-red);
 }
 
+.menu-overlay {
+  display: none;
+}
+
+.menu-overlay.overlay {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(47, 53, 79, 0.9);
+  z-index: 10;
+}
+
+.overlay-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 2rem;
+}
+
+.overlay-header .logo-container img {
+  height: 3rem;
+}
+
+.overlay-header .mobile-menu-toggle {
+  cursor: pointer;
+  display: block;
+}
+
+.overlay-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  color: var(--white);
+  margin-top: 3rem;
+}
+
+.overlay-content ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 1rem;
+  text-transform: uppercase;
+}
+
+.overlay-content ul li a {
+  color: var(--white);
+  font-size: 1.4rem;
+  text-decoration: none;
+}
+
+.overlay-content ul li a:hover {
+  color: var(--primary-soft-red);
+}
+
+.social-icons {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-icons img {
+  width: 2rem;
+  height: 2rem;
+}
+
 @media (max-width: 768px) {
   .header-section {
     padding: 3rem 5rem;
@@ -123,11 +230,20 @@ export default {
 
   .header-menu ul {
     display: none;
-    flex-direction: column;
   }
 
-  .header-menu ul.open {
-    display: block;
+  .menu-overlay {
+    display: none;
+  }
+
+  .menu-overlay.overlay {
+    display: flex;
+  }
+
+  .login-button {
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
   }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="layout-container">
-    <Header />
+    <Header @update:showFooter="updateFooterVisibility" />
     <main class="main-section">
       <slot />
     </main>
@@ -10,7 +10,7 @@
         >Chelzea Salvador</a
       >
     </div> -->
-    <Footer />
+    <Footer :showFooter="showFooter" />
   </div>
 </template>
 
@@ -23,6 +23,16 @@ export default {
   components: {
     Header,
     Footer
+  },
+  data() {
+    return {
+      showFooter: true
+    }
+  },
+  methods: {
+    updateFooterVisibility(isVisible) {
+      this.showFooter = isVisible
+    }
   }
 }
 </script>

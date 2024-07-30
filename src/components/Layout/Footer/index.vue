@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer-section">
+  <footer v-if="showFooter" class="footer-section">
     <div class="footer-container">
       <div class="footer-left">
         <div class="logo-container">
@@ -38,7 +38,13 @@
 
 <script>
 export default {
-  name: 'Footer'
+  name: 'Footer',
+  props: {
+    showFooter: {
+      type: Boolean,
+      default: true
+    }
+  }
 }
 </script>
 
@@ -60,6 +66,8 @@ export default {
 
 .logo-container {
   margin-right: 4rem;
+  align-items: center;
+  display: flex;
 }
 
 .logo-container img {
@@ -105,7 +113,7 @@ export default {
 
 @media (max-width: 768px) {
   .footer-section {
-    display: none;
+    padding: 10rem;
   }
 }
 </style>
